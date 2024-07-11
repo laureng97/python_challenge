@@ -31,14 +31,14 @@ with open(budget_data_csv) as csvfile:
         total_profits.append(row[1])
     #Print the total months
     print(f"Total Months: {len(total_months)}")
-    output_text += f"Total Months: {len(total_months)}"     
+    output_text += f"Total Months: {len(total_months)}\n"     
 
     # Net total amount of Profit/Losses over the entire period
     total_profits = [int(x) for x in total_profits]
     total_profits_sum = sum(total_profits)
     #Print the Total Amount of Profit/Losses
     print(f"Total: ${total_profits_sum} ")
-    output_text += f"Total: ${total_profits_sum} "
+    output_text += f"Total: ${total_profits_sum}\n "
 
 # The changes in Profit/Losses over the entire period, and then the AVERAGE of those changes
 for i in range(len(total_profits)-1):
@@ -51,7 +51,7 @@ average_change = statistics.mean(monthly_changes)
 average_change_rounded = round(average_change, 2)
 #Print the average of changes in Profit/Losses
 print(f"Average Change: ${average_change_rounded}")
-output_text += f"Average Change: ${average_change_rounded}"
+output_text += f"Average Change: ${average_change_rounded}\n"
 
 # The greatest increase in profits (date and amount) over the entire period
 #Set the greatest increase to the biggest amount listed in monthly changes
@@ -62,7 +62,7 @@ greatest_increase_index = monthly_changes.index(greatest_increase)
 date_greatest_increase = total_months[greatest_increase_index + 1]
 #Print the statement showing the greatest increase and date associated with the value
 print(f"Greatest Increase in Profits: {date_greatest_increase} (${greatest_increase})")
-output_text += f"Greatest Increase in Profits: {date_greatest_increase} (${greatest_increase})"
+output_text += f"Greatest Increase in Profits: {date_greatest_increase} (${greatest_increase})\n"
 
 # The greatest decrease in profits (date and amount) over the entire period
 greatest_decrease = min(monthly_changes)
@@ -72,11 +72,12 @@ greatest_decrease_index = monthly_changes.index(greatest_decrease)
 date_greatest_decrease = total_months[greatest_decrease_index + 1]
 #Print the statement showing the greatest decrease and date associated with the value
 print(f"Greatest Decrease in Profits: {date_greatest_decrease} (${greatest_decrease})")
-output_text += f"Greatest Decrease in Profits: {date_greatest_decrease} (${greatest_decrease})"
+output_text += f"Greatest Decrease in Profits: {date_greatest_decrease} (${greatest_decrease})\n"
 
 
 # Be sure that the analysis prints to the terminal and exports a text file with the results
 analysis_folder = "Analysis"
 output_file = os.path.join(analysis_folder, "financial_analysis.txt")
+print(output_text)
 with open(output_file, "w") as file:
     file.write(output_text)
